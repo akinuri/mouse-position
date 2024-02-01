@@ -235,6 +235,8 @@
         cells.offset.textContent = [e.offsetX, e.offsetY].join(", ");
         cells.xy.textContent     = [e.x, e.y].join(", ");
         cells.scroll.textContent = getTargetScrollPos(e).join(", ");
+        unmarkMarkedElements();
+        markEventTarget(e);
     });
     
     function getTargetScrollPos(e) {
@@ -243,6 +245,29 @@
             e.offsetY + e.target.scrollTop,
         ];
     }
+    
+    function markEventTarget(e) {
+        e.target.classList.add(
+            "outline",
+            "outline-2",
+            "outline-dashed",
+            "outline-gray-800/80",
+            "-outline-offset-1",
+        );
+    }
+    
+    function unmarkMarkedElements() {
+        Array.from(document.querySelectorAll(".outline-dashed")).forEach(el => {
+            el.classList.remove(
+                "outline",
+                "outline-2",
+                "outline-dashed",
+                "outline-gray-800/80",
+                "-outline-offset-1",
+            );
+        });
+    }
+    
 </script>
 
 <script>
