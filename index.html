@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Mouse Position</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .cell-px-1 :is(th, td) {
+                @apply px-1;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-100">
+
+<div id="info-box"
+    style="--width: 275px; --height: 295px; backdrop-filter: blur(2px);"
+    class="fixed bg-white/80 shadow-xl p-3 rounded top-4 left-[50%] translate-x-[-50%] select-none w-[var(--width)] h-[var(--height)] pointer-events-none border border-gray-200/75 border-l-gray-200 border-r-gray-200 border-b-gray-300/75"
+    >
+    <table class="cell-px-1 w-full">
+        <tr>
+            <td>
+                screen
+                <span class="opacity-50">(size)</span>
+            </td>
+            <td>:</td>
+            <td id="screen-size">9999 x 9999</td>
+        </tr>
+        <tr>
+            <td>
+                viewport
+                <span class="opacity-50">(size)</span>
+            </td>
+            <td>:</td>
+            <td id="viewport-size"></td>
+        </tr>
+        <tr>
+            <td>
+                viewport
+                <span class="opacity-50">(pos)</span>
+            </td>
+            <td>:</td>
+            <td id="viewport-xy"></td>
+        </tr>
+        <tr>
+            <td colspan="3"><hr></td>
+        </tr>
+        <tr>
+            <td>
+                screen
+                <span class="opacity-50">(monitor)</span>
+            </td>
+            <td>:</td>
+            <td id="screen-xy"></td>
+        </tr>
+        <tr>
+            <td>
+                client
+                <span class="opacity-50">(viewport)</span>
+            </td>
+            <td>:</td>
+            <td id="client-xy"></td>
+        </tr>
+        <tr>
+            <td>
+                x, y
+                <span class="opacity-50">(viewport)</span>
+            </td>
+            <td>:</td>
+            <td id="xy-xy"></td>
+        </tr>
+        <tr>
+            <td>
+                page
+                <span class="opacity-50">(document)</span>
+            </td>
+            <td>:</td>
+            <td id="page-xy"></td>
+        </tr>
+        <tr>
+            <td class="line-through" title="non-standard">
+                layer
+            </td>
+            <td>:</td>
+            <td id="layer-xy"></td>
+        </tr>
+        <tr>
+            <td>
+                offset
+                <span class="opacity-50">(target)</span>
+            </td>
+            <td>:</td>
+            <td id="offset-xy"></td>
+        </tr>
+        <tr>
+            <td colspan="3"><hr></td>
+        </tr>
+        <tr>
+            <td>
+                scroll
+                <span class="opacity-50">(target)</span>
+            </td>
+            <td>:</td>
+            <td id="scroll-xy"></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+
+</html>
