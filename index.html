@@ -110,6 +110,65 @@
     </table>
 </div>
 
+<script>
+    let cells = {
+        screenSize   : document.querySelector("#screen-size"),
+        viewportSize : document.querySelector("#viewport-size"),
+        viewportXY   : document.querySelector("#viewport-xy"),
+        screen  : document.querySelector("#screen-xy"),
+        client  : document.querySelector("#client-xy"),
+        xy      : document.querySelector("#xy-xy"),
+        page    : document.querySelector("#page-xy"),
+        layer   : document.querySelector("#layer-xy"),
+        offset  : document.querySelector("#offset-xy"),
+        scroll  : document.querySelector("#scroll-xy"),
+    };
+    
+    cells.screenSize.textContent   = [screen.width, screen.height].join(" × ");
+    cells.viewportSize.textContent = [innerWidth, innerHeight].join(" × ");
+    cells.viewportXY.textContent   = [screenX, screenY].join(" × ");
+    window.addEventListener("resize", () => {
+        cells.viewportSize.textContent = [innerWidth, innerHeight].join(" × ");
+    });
+    window.addEventListener("move", () => {
+        cells.viewportXY.textContent = [screenX, screenY].join(" × ");
+    });
+    
+    window.addEventListener("mousemove", (e) => {
+        cells.screen.textContent = [e.screenX, e.screenY].join(", ");
+        cells.client.textContent = [e.clientX, e.clientY].join(", ");
+        cells.page.textContent   = [e.pageX, e.pageY].join(", ");
+        cells.layer.textContent  = [e.layerX, e.layerY].join(", ");
+        cells.offset.textContent = [e.offsetX, e.offsetY].join(", ");
+        cells.xy.textContent     = [e.x, e.y].join(", ");
+        cells.scroll.textContent = getTargetScrollPos(e).join(", ");
+    });
+    
+    function getTargetScrollPos(e) {
+        return [
+            e.offsetX + e.target.scrollLeft,
+            e.offsetY + e.target.scrollTop,
+        ];
+    }
+</script>
+
+<script>
+    // fake window move event
+    (() => {
+        let previousScreenX = screenX;
+        let previousScreenY = screenY;
+        setInterval(() => {
+            let currentScreenX = screenX;
+            let currentScreenY = screenY;
+            if (currentScreenX !== previousScreenX || currentScreenY !== previousScreenY) {
+                window.dispatchEvent(new CustomEvent("move"));
+            }
+            previousScreenX = currentScreenX;
+            previousScreenY = currentScreenY;
+        }, 250);
+    })();
+</script>
+
 </body>
 
 </html>
